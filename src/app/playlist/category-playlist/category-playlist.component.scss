@@ -1,0 +1,40 @@
+.category-playlist {
+    color: white;
+    .card-list {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: max-content;
+        max-width: 80%;
+        margin: auto;
+
+        .example-card {
+            width: 50px;
+            min-width: 22%;
+            margin: 25px 7px;
+            box-sizing: border-box;
+            background-color: #242323;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.5;
+            }
+
+            .list-card-image {
+                text-align: center;
+            }
+
+            .mat-card-title {
+                color: white;
+            }
+
+            .mat-card-subtitle {
+                color: gray;
+                white-space: nowrap;
+                width: 164px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+}

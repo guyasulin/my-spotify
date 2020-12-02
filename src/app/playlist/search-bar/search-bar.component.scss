@@ -1,0 +1,23 @@
+.search-bar {
+    color: white;
+
+    .search {
+        ::ng-deep {
+            .mat-form-field-flex {
+                background: white;
+                margin: 20px;
+                border-radius: 15px;
+                color: black;
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+        }
+        .icon-search {
+            font-size: 24px;
+            vertical-align: sub;
+        }
+    }
+
+}

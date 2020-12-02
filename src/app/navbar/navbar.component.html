@@ -1,0 +1,16 @@
+<div class="navbar">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <div class="element-item" routerLink="/playlist/main" >
+          <mat-icon class="elm-icon">search</mat-icon>Search </div>
+        <div class="element-item">
+          <mat-icon class="elm-icon">add_box</mat-icon>Create a playlist
+        </div>
+        <div class="element-item"><mat-icon class="elm-icon">favorite</mat-icon>Songs you loved</div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

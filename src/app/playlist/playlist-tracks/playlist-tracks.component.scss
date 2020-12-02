@@ -1,0 +1,50 @@
+.playlist-tracks {
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    counter-reset: row-num;
+
+    tr {
+      counter-increment: row-num;
+    }
+
+    tr td:first-child::before {
+      content: counter(row-num) ". ";
+    }
+  }
+
+
+  td,
+  th {
+    text-align: left;
+    padding: 8px;
+    color: white;
+  }
+
+  .image-playlist-tracks {
+    width: 50px;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) {
+    background-color: #242323;
+  }
+
+  .playlist-tracks-favorite {
+    visibility: hidden;
+  }
+
+  tr {
+    cursor: pointer;
+
+    &:hover {
+      .playlist-tracks-favorite {
+        visibility: initial;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+    }
+  }
+}

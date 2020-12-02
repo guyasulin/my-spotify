@@ -1,0 +1,17 @@
+<div class="search-bar">
+  <div class="search">
+
+    <form [formGroup]="searchForm">
+      <mat-form-field>
+        <mat-icon class="icon-search" matPrefix>search</mat-icon>
+        <input matInput type="text" (keyup)="searchTrem.next($event)" formControlName='search'
+          placeholder="Search Artists, Albums, Playlists">
+      </mat-form-field>
+    </form>
+
+
+    <div *ngIf="searchResults">
+      <app-content-search-result [contentDataArtists]="contentDataArtists" [contentDataAlbums]="contentDataAlbums"
+        [contentPlaylists]="contentPlaylists"></app-content-search-result>
+    </div>
+  </div>

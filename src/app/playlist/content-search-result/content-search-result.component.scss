@@ -1,0 +1,29 @@
+.content-search-result {
+    color: white;
+    .card-list {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 89%;
+        margin: auto;
+
+        .example-card {
+            width: 50px;
+            min-width: 14%;
+            margin: 25px 7px;
+            box-sizing: border-box;
+            background: #000000a3;
+            cursor: pointer;
+
+            .mat-card-title {
+                color: white;
+            }
+            .mat-card-subtitle,.artistName {
+                color: gray;
+                white-space: nowrap;
+                width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<div class="playlist-tracks">
+  <table>
+    <tr>
+      <th># title</th>
+      <th>album</th>
+      <th>Date added</th>
+      <th>time</th>
+    </tr>
+    <tr *ngFor="let itemsTrack of tracks">
+      <td>
+        <img class="image-playlist-tracks" src="{{ itemsTrack.track.album.images[0].url }}">
+         <span> {{itemsTrack.track.name}} -</span> 
+        <span *ngFor="let itemsTrackArtists of itemsTrack.track.artists">
+          {{itemsTrackArtists.name}}
+        </span>
+      </td>
+      <td> {{itemsTrack.track.album.name}}</td>
+      <td>{{itemsTrack.added_at | date}}</td>
+      <td>
+        <span >
+          <mat-icon class="playlist-tracks-favorite">favorite</mat-icon>
+        </span>
+        {{itemsTrack.track.duration_ms | date:"HH:mm" }} 
+      </td>
+    </tr>
+  </table>
+</div>
+

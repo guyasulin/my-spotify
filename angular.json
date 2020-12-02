@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +125,11 @@
           }
         }
       }
-    }},
-  "defaultProject": "my-spotify"
+    }
+  },
+  "defaultProject": "my-spotify",
+  "cli": {
+    "analytics": "67cbf7d3-a853-4e7a-afac-e8fbd5783f23",
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
