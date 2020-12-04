@@ -1,1 +1,29 @@
-<p>favorite works!</p>
+<div class="favorite">
+  <h1>Favorite</h1>
+  <table>
+    <tr>
+      <th>#  Title</th>
+      <th>Album</th>
+      <th>Date Added</th>
+      <th ><mat-icon class="icon-time">access_time</mat-icon></th>
+    </tr>
+    <tr class="tr_Favorit" *ngFor="let favoriteSong of favorite$ | async">
+      <td>
+        <img class="image-playlist-tracks" src="{{ favoriteSong.album.images[0].url }}">
+        <span> {{favoriteSong.name}} -</span>
+        <span *ngFor="let favoriteSongArtists of favoriteSong.artists">
+          {{favoriteSongArtists.name}}
+        </span>
+      </td>
+      <td> {{favoriteSong.album.name}}</td>
+      <td>{{favoriteSong.added_at | date}}</td>
+      <td>
+        <span>
+          <mat-icon class="playlist-tracks-favorite" (click)="removeSong(favoriteSong)">favorite</mat-icon>
+        </span>
+
+        {{favoriteSong.duration_ms | date:"HH:mm" }}
+      </td>
+    </tr>
+  </table>
+</div>

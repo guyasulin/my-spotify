@@ -15,3 +15,23 @@ export const loadCategoriesFailure = createAction(
   props<{ error: any }>()
 );
 
+
+export const toggleLikedSong = createAction(
+  '[PlaylistTrackers] Toggle Liked Song',
+  props<{ like: boolean }>()
+);
+
+export const getSongLiked = createAction(
+  '[Favorite] Load Categories Failure',
+);
+
+
+export const addSongToLikesong = createAction(
+  '[PlaylistTrackers] Add Song To Likesong',
+  props<{ song: Playlist }>()
+);
+
+export const removeSongFavorite = createAction(
+  "[Favorite] Remove Song",
+  props<{ id: string }>()
+);

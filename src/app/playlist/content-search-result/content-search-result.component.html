@@ -2,7 +2,7 @@
     <h1>All Artists</h1>  
     <div class="card-list artists">
         <mat-card class="example-card artists" *ngFor="let contentArtists of contentDataArtists">
-            <img mat-card-image src="{{ contentArtists.images[0].url }}">
+            <img mat-card-image src="{{ contentArtists.images[0]?.url }}">
           <mat-card-title> {{ contentArtists.name }}</mat-card-title>
         </mat-card>
       </div>
@@ -10,7 +10,7 @@
       <h1>All Albums</h1>
       <div class="card-list albums">
         <mat-card class="example-card albums" *ngFor="let contentAlbums of contentDataAlbums">
-            <img mat-card-image src="{{ contentAlbums.images[0].url }}"> 
+            <img mat-card-image src="{{ contentAlbums.images[0]?.url }}"> 
           <mat-card-title> {{ contentAlbums.name }}</mat-card-title>
           <div *ngFor="let artist of contentAlbums.artists">
             <span class="artistName">{{ artist.name }}</span>
@@ -21,7 +21,7 @@
       <h1>All Playlists </h1>
       <div class="card-list playlists">
         <mat-card class="example-card playlists" *ngFor="let contentPlaylists of contentPlaylists">
-                <img mat-card-image src="{{ contentPlaylists.images[0].url }}">
+                <img mat-card-image src="{{ contentPlaylists.images[0]?.url }}">
                 <mat-card-title> {{ contentPlaylists.name }}</mat-card-title>
                 <mat-card-subtitle> {{ contentPlaylists.description }}</mat-card-subtitle>
         </mat-card>

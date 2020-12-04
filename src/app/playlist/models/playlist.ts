@@ -14,6 +14,7 @@ export class Playlist {
 
 class album {
 	images: images[];
+	name:string
 }
 
 class images {

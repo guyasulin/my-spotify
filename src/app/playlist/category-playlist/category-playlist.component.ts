@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoryPlaylistComponent implements OnInit {
 
-  playlists$:Observable<Playlist>;
+  public playlists$:Observable<Playlist>;
 
   constructor(public playlistService:PlaylistService, private route: ActivatedRoute, ) { }
 

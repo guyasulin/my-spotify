@@ -1,3 +1,4 @@
+import { FavoriteComponent } from './favorite/favorite.component';
 import { PlaylistTracksComponent } from './playlist-tracks/playlist-tracks.component';
 import { CategoryPlaylistComponent } from './category-playlist/category-playlist.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:'track/:id',
     component: PlaylistTracksComponent
+},
+{
+  path:'favorite',
+  component: FavoriteComponent
 },
 ];
 

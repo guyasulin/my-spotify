@@ -1,10 +1,7 @@
-import { loadCategoriesFailure } from './playlist.actions';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { Playlist } from '../models/playlist';
 import { PlaylistService } from '../services/playlist.service';
 import * as PlaylistActions from "../store/playlist.actions";
 
@@ -17,7 +14,7 @@ export class PlaylistEffects {
 
   constructor(    private actions$: Actions, 
     public playlistService:PlaylistService,
-    private router: Router) {}
+    ) {}
 
 
     loadCategories$ = createEffect(() => 

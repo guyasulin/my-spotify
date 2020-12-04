@@ -37,6 +37,7 @@ export class SearchBarComponent implements OnInit {
           this.contentDataAlbums = [];
           this.contentPlaylists = [];
           this.searchResults = false;
+          this.showResults.emit([''])
         } else {
           this.showResults.emit(e.target.value)
           this.searchResults = true;

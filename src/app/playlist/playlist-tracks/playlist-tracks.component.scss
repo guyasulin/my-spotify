@@ -1,4 +1,13 @@
 .playlist-tracks {
+  color: grey;
+
+  .playlist-page {
+    background-color: rgb(48, 64, 40);  
+    color: #fff;
+    padding: 0 32px 24px;
+    height: 53vh;
+  }
+
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -11,6 +20,8 @@
 
     tr td:first-child::before {
       content: counter(row-num) ". ";
+
+ 
     }
   }
 
@@ -19,7 +30,6 @@
   th {
     text-align: left;
     padding: 8px;
-    color: white;
   }
 
   .image-playlist-tracks {
@@ -27,18 +37,23 @@
     vertical-align: middle;
   }
 
-  tr:nth-child(even) {
-    background-color: #242323;
-  }
 
   .playlist-tracks-favorite {
     visibility: hidden;
   }
 
-  tr {
-    cursor: pointer;
+  .icon-time {
+    font-size: 20px;
+    vertical-align: sub;
+  }
 
+  .tr_Trak {
+    
     &:hover {
+      cursor: pointer;
+        background-color: #242323;
+        color: white;
+
       .playlist-tracks-favorite {
         visibility: initial;
         display: inline-block;

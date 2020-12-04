@@ -19,7 +19,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     FavoriteComponent,
     PlaylistTracksComponent,
     SearchBarComponent,
-    ContentSearchResultComponent
+    ContentSearchResultComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-<app-search-bar></app-search-bar>
+<app-search-bar (showResults)="showResults($event)"></app-search-bar>
 
 <div class="main" *ngIf="showData">
   <h1>Browse all the options</h1>

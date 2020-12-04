@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class PlaylistService {
 	cabeceras: HttpHeaders = new HttpHeaders({
 		Authorization:
-			'Bearer BQDLa8apB2eQ2sleDtFSB2LfjuoEQiUaTiHrd_5Li1IhmXtdMqVm1ifXnF3r-JCXRP7K4FI8BwaBtzOoflhBcQ52Pg_TntApbmLohbcby_AvK-Q5_NWf6_D9LbLLcQPXQzgozghmkPlclY0DAqYOnFenNjxEyhs'
+			'Bearer BQCTfcWQTHV9iLQpNBX4wxTISk9jqfjDZ0__DrffdOqZqzaGQ5-RnNATEBnYU4vtqKWYV9sZyaMOHoU35Tujooh_WclmauWWmZQuTND89jyZnMfH47DrsDo7dyNaNbBLHrWEGShfhAsy4CuC7dbXE8If-4yb93Y'
 	});
 
 	constructor(private http: HttpClient) {}

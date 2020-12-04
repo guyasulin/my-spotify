@@ -1,31 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Playlist } from '../models/playlist';
 import { PlaylistService } from '../services/playlist.service';
+import * as fromPlaylistReducer from '../store/playlist.reducer';
+import * as fromPlaylistActions from "../store/playlist.actions";
+import { getShowSongLiked } from './../store/playlist.selectors';
+import { takeWhile } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-playlist-tracks',
-  templateUrl: './playlist-tracks.component.html',
-  styleUrls: ['./playlist-tracks.component.scss']
+	selector: 'app-playlist-tracks',
+	templateUrl: './playlist-tracks.component.html',
+	styleUrls: [ './playlist-tracks.component.scss' ]
 })
 export class PlaylistTracksComponent implements OnInit {
+	public tracks$: Observable<Playlist>;
+	public tracks: Playlist;
+  public displayCode: boolean;
+  public isNoFavorit:boolean;
+  public isFavorit:boolean;
+ 
+  public componentActive = true;
+  public selectedSong: Playlist | null;
 
-  tracks$:Observable<Playlist>;
-  tracks:Playlist
+	constructor(
+		public playlistService: PlaylistService,
+		private route: ActivatedRoute,
+    private store: Store<fromPlaylistReducer.PlaylistState>,
+    private _snackBar: MatSnackBar
+	) {}
 
-  constructor(public playlistService:PlaylistService, private route: ActivatedRoute) { }
+	ngOnInit(): void {
+		const playlistId = this.route.snapshot.paramMap.get('id');
 
-  ngOnInit(): void {
-    const playlistId = this.route.snapshot.paramMap.get("id");
-    console.log(playlistId);
+		this.playlistService.getPlaylistByTracksId(playlistId).subscribe((res) => {
+      this.tracks = res.items;
+      console.log( res);
+    });
     
-    this.playlistService.getPlaylistByTracksId(playlistId).subscribe(res => {
-       this.tracks = res.items;
-       console.log( this.tracks );
-       
-    })
-    
+    this.store.pipe(
+      select(getShowSongLiked),
+      takeWhile(() => this.componentActive)
+    ).subscribe(
+      showProductCode => {
+        this.displayCode = showProductCode
+      }
+      
+    );
+	}
+  
+  openSnackBar() {
+    this._snackBar.open('Added to your favorite song list', '', {
+      duration: 5000,
+    });
   }
 
+	addToFavorits(song: Playlist): void {
+    this.store.dispatch(fromPlaylistActions.addSongToLikesong({ song } ))
+    this. openSnackBar()
+  }
+  
 }
