@@ -5,28 +5,27 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
-    {
-        path:'main',
-        component: MainPageComponent
-    },
-    {
-      path:'genre/:id',
-      component: CategoryPlaylistComponent
-  },
-  {
-    path:'track/:id',
-    component: PlaylistTracksComponent
-},
-{
-  path:'favorite',
-  component: FavoriteComponent
-},
+	{
+		path: 'main',
+		component: MainPageComponent
+	},
+	{
+		path: 'genre/:id',
+		component: CategoryPlaylistComponent
+	},
+	{
+		path: 'track/:id',
+		component: PlaylistTracksComponent
+	},
+	{
+		path: 'favorite',
+		component: FavoriteComponent
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [ RouterModule.forChild(routes) ],
+	exports: [ RouterModule ]
 })
-export class PlaylistRoutingModule { }
+export class PlaylistRoutingModule {}

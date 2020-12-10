@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
 
   public categories$: Observable<Playlist[]>;
   public showData: boolean = true;
-  textValue: string = '';
+  public textValue: string = '';
 
 
   constructor(

@@ -43,7 +43,9 @@ export const playlistReducer = createReducer(
   }),
 
   on(PlaylistActions.getSongLiked, (state, action) => {
-    return state
+    return {
+      ...state
+    }
   }),
 
   on(PlaylistActions.addSongToLikesong, (state, action) => {

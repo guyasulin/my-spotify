@@ -24,10 +24,9 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.favorite$ = this.store.pipe(
-      distinctUntilChanged(),
       select(getSongLike),
+      distinctUntilChanged(),
       )
-        console.log( this.favorite$);
   }
 
   openSnackBar() {

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, throwError } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap, catchError, startWith } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap, catchError, startWith, takeUntil } from 'rxjs/operators';
 import { Playlist } from '../models/playlist';
 import { PlaylistService } from '../services/playlist.service';
 
@@ -10,7 +10,7 @@ import { PlaylistService } from '../services/playlist.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit, OnDestroy {
 
   @Input() searchResults: boolean;
   @Output() showResults = new EventEmitter<any>();
@@ -18,7 +18,8 @@ export class SearchBarComponent implements OnInit {
   public contentDataArtists: Playlist[];
 	public contentPlaylists: Playlist[];
   public searchTrem = new Subject<string>();
-
+  public takeUntil$: Subject<boolean> = new Subject<boolean>();
+  
   public searchForm = new FormGroup({
     search: new FormControl("")
   })
@@ -46,6 +47,7 @@ export class SearchBarComponent implements OnInit {
       }),
       debounceTime(600), 
       distinctUntilChanged(),
+      takeUntil(this.takeUntil$),
       startWith(''),
       switchMap(trem => {
         return this.playlistService.getSearchContent(trem);
@@ -58,6 +60,11 @@ export class SearchBarComponent implements OnInit {
       this.contentPlaylists = v.playlists.items;
       this.contentDataAlbums = v.albums.items;
     })
+  }
+
+  ngOnDestroy() {
+    this.takeUntil$.next();
+    this.takeUntil$.complete();
   }
 
 }

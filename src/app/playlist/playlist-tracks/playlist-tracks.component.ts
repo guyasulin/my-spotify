@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Playlist } from '../models/playlist';
 import { PlaylistService } from '../services/playlist.service';
 import * as fromPlaylistReducer from '../store/playlist.reducer';
 import * as fromPlaylistActions from "../store/playlist.actions";
 import { getShowSongLiked } from './../store/playlist.selectors';
-import { takeWhile } from 'rxjs/operators';
+import { takeUntil, takeWhile } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -15,13 +15,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	templateUrl: './playlist-tracks.component.html',
 	styleUrls: [ './playlist-tracks.component.scss' ]
 })
-export class PlaylistTracksComponent implements OnInit {
+export class PlaylistTracksComponent implements OnInit, OnDestroy {
 	public tracks$: Observable<Playlist>;
 	public tracks: Playlist;
   public displayCode: boolean;
   public isNoFavorit:boolean;
   public isFavorit:boolean;
- 
+  public takeUntil$: Subject<boolean> = new Subject<boolean>();
+  
   public componentActive = true;
   public selectedSong: Playlist | null;
 
@@ -35,11 +36,25 @@ export class PlaylistTracksComponent implements OnInit {
 	ngOnInit(): void {
 		const playlistId = this.route.snapshot.paramMap.get('id');
 
-		this.playlistService.getPlaylistByTracksId(playlistId).subscribe((res) => {
+    this.playlistService.getPlaylistByTracksId(playlistId).pipe(
+      takeUntil(this.takeUntil$)
+    )
+    .subscribe((res) => {
       this.tracks = res.items;
-      console.log( res);
     });
     
+
+
+    // this.store.pipe(
+    //   select(getCurrentSong), 
+    //   takeWhile(() => this.componentActive)
+    // ).subscribe(
+    //   currentSong => {
+    //     this.selectedSong = currentSong
+    //     // console.log("selectedSong", this.selectedSong);
+    //   }
+    // );
+
     this.store.pipe(
       select(getShowSongLiked),
       takeWhile(() => this.componentActive)
@@ -62,4 +77,16 @@ export class PlaylistTracksComponent implements OnInit {
     this. openSnackBar()
   }
   
+  addToPlaylit(playlist: Playlist){
+    console.log(playlist);
+  }
+
+  removeFromFavorits(song: Playlist): void {
+    // this.store.dispatch(fromPlaylistActions.removeSongFavorite({ song } ))
+  }
+  
+  ngOnDestroy() {
+    this.takeUntil$.next();
+    this.takeUntil$.complete();
+  }
 }

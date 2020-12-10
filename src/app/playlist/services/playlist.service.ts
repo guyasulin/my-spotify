@@ -1,3 +1,4 @@
+import { Playlist } from './../models/playlist';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  EMPTY, Observable } from 'rxjs';
@@ -10,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class PlaylistService {
 	cabeceras: HttpHeaders = new HttpHeaders({
 		Authorization:
-			'Bearer BQCTfcWQTHV9iLQpNBX4wxTISk9jqfjDZ0__DrffdOqZqzaGQ5-RnNATEBnYU4vtqKWYV9sZyaMOHoU35Tujooh_WclmauWWmZQuTND89jyZnMfH47DrsDo7dyNaNbBLHrWEGShfhAsy4CuC7dbXE8If-4yb93Y'
+			'Bearer BQDINqidbvYImDTqoIelrvN-6JHOnVVmXs5OUKIVKM6cO3b6WwI5ioIaGOlBi0ITM-wKJgWVWs6oTpvNlyUoH7xSyi8zoqiEmRjsn3TUFHkWaDBVi9orduuG-rJabPrEK2eGdNA2euFQcNgWq16_B_xKfJIJIes'
 	});
 
 	constructor(private http: HttpClient) {}
@@ -19,7 +20,7 @@ export class PlaylistService {
 		return this.http.get('https://api.spotify.com/v1/browse/categories', { headers: this.cabeceras });
 	}
 
-	getPlaylistByCategoryId(category_id: any): Observable<any> {
+	getPlaylistByCategoryId(category_id: any): Observable<Playlist> {
 		return this.http
 			.get(`https://api.spotify.com/v1/browse/categories/${category_id}/playlists`, { headers: this.cabeceras })
 			.pipe(map(({ playlists: { items } }: any) => items));

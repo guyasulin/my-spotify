@@ -16,7 +16,6 @@ export class PlaylistEffects {
     public playlistService:PlaylistService,
     ) {}
 
-
     loadCategories$ = createEffect(() => 
       this.actions$.pipe(
         ofType(PlaylistActions.loadCategories),
